@@ -1,0 +1,25 @@
+<p>Grid works!</p>
+
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @for (album of albums; track album) {
+        <div class="col">
+          <div class="card shadow-sm">
+            <img [src]="album.image || 'https://via.placeholder.com/225'" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Album Image">
+            <div class="card-body">
+              <p class="card-text"><strong>{{ album.title }}</strong>: {{ album.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-body-secondary">{{ album.time }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
