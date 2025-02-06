@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Foto } from '../interfaz/foto';
+import { RecursosService } from '../../servicios/recursos.service';
+import { HttpClientModule } from '@angular/common/http';
 
 interface Album {
     title: string;
@@ -10,9 +13,19 @@ interface Album {
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.css'],
+  imports: [HttpClientModule],
+  providers: [RecursosService],
 })
 export class GridComponent {
+
+  fotos: Foto[] = [];
+  constructor(private recursosService: RecursosService) {
+    recursosService.obtenerDatos().subscribe(respuesta => {
+      this.fotos = respuesta as Array<Foto>;
+    })
+  }
+
   albums: Album[] = [
     {
         title: "Album 1",
@@ -69,4 +82,6 @@ export class GridComponent {
     image: "https://via.placeholder.com/225"
   }
   ];
+
+
 }
